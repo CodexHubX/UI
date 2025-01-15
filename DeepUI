@@ -912,8 +912,17 @@ function library:CreateWindow(name, size, hidebutton)
                 end
                 toggle:Set(toggle.default)
 
-                function toggle:AddKeybind(default, flag,keycallback)
+                function toggle:AddKeybind(SaveManager)
                     local keybind = { }
+					
+					if not SaveManager.Data[text..' Key'] then 
+						SaveManager.Data[text..' Key'] = 'None';
+					end;
+
+					local default = (SaveManager.Data[text..' Key'] ~= 'None' and Enum.KeyCode[SaveManager.Data[text..' Key']]);
+					local flag = '';
+
+					-- default, flag,keycallback
 
                     keybind.default = default or "None"
                     keybind.value = keybind.default
@@ -959,8 +968,9 @@ function library:CreateWindow(name, size, hidebutton)
                         library.flags[keybind.flag] = keybind.default
                     end
                     function keybind:Set(key)
-
-						keycallback(key)
+						--keycallback(key)
+						local newhotkey = tostring(key):split('KeyCode.')[2]
+						SaveManager.Set[text..' Key'] = newhotkey;
 
                         if key == "None" then
                             keybind.Main.Text = "[" .. key .. "]"
