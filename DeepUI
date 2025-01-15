@@ -937,6 +937,7 @@ function library:CreateWindow(name, size, hidebutton)
                         ["RightAlt"] = "RALT"
                     }
 
+					local realToggleText = text
                     local text = keybind.default == "None" and "[None]" or "[" .. (shorter_keycodes[keybind.default.Name] or keybind.default.Name) .. "]"
                     local size = textservice:GetTextSize(text, 15, window.theme.font, Vector2.new(2000, 2000))
 
@@ -970,7 +971,7 @@ function library:CreateWindow(name, size, hidebutton)
                     function keybind:Set(key)
 						--keycallback(key)
 						local newhotkey = tostring(key):split('KeyCode.')[2]
-						SaveManager.Set[text..' Key'] = newhotkey;
+						SaveManager.Set[realToggleText..' Key'] = newhotkey;
 
                         if key == "None" then
                             keybind.Main.Text = "[" .. key .. "]"
