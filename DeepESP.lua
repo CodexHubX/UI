@@ -371,7 +371,7 @@ function Library.AddPlayer(player)
     end;
 
     object.connections.updater = RunService.Heartbeat:Connect(function(Time)
-        updater();
+        pcall(updater);
     end);
 
     object.connections.ancestrychange = object.player.AncestryChanged:Connect(function(_,parent)
@@ -463,7 +463,7 @@ function Library.AddEntity(Instance)
     end;
 
     object.connections.updater = RunService.Heartbeat:Connect(function(Time)
-        updater();
+        pcall(updater);
     end);
 
     object.connections.ancestrychange = object.instance.AncestryChanged:Connect(function(_,parent)
@@ -547,7 +547,7 @@ function Library.AddInstance(Instance,Name)
         end;
 
         object.connections.updater = RunService.Heartbeat:Connect(function(Time)
-            updater();
+            pcall(updater);
         end);
     end;
     
